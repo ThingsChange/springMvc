@@ -13,7 +13,7 @@ name:<input type="text" placeholder="sign your name">
     window.onload = function () {
         AutoComplete({
             id: 'txtTest', //控件id
-            url: '/Home/Test4', //数据
+            url: '/test/input/getInput', //数据
             paraName:'name',
             textFiled: 'name', //显示的文字的属性名
             valueFiled: 'id', //获取value的属性名
@@ -28,7 +28,7 @@ name:<input type="text" placeholder="sign your name">
     }
     function hello(){
         var xhr=new XMLHttpRequest();
-        xhr.open("get","/hello",true);
+        xhr.open("get","/api/hello/printHello",true);
         xhr.onreadystatechange=function(){
             if(xhr.readyState=="4"&&xhr.status=="200"){
                 alert("请求成功");
