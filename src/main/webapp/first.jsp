@@ -14,11 +14,6 @@
 </head>
 <link rel="stylesheet" href="css/jbox.css"/>
 <link type="text/css" rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css"/>
-<script type="text/javascript" src="js/autocomplete.js"></script>
-<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="js/jquery.jBox-2.3.min.js"></script>
-<script type="text/javascript" src="js/jquery-migrate-1.js"></script>
-<script></script>
 <body>
 <h2>Hello javaScript，bye java!</h2>
 <input type="button" onclick="hello()" value="zou">
@@ -37,6 +32,11 @@
 <%
     out.print("1111");
 %>
+<script type="text/javascript" src="js/autocomplete.js"></script>
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/jquery.jBox-2.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.js"></script>
+<script type="text/javascript" src="static/js/test/test.js?v=5db2acb4db"></script>
 </body>
 <script>
     window.onload = function () {
