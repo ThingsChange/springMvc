@@ -1,0 +1,25 @@
+{
+  "name": "ourstudy",
+  "description": "our study demo and test",
+  "main": "index.js",
+  "authors": [
+    "晴云"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "study"
+  ],
+  "homepage": "https://github.com/ThingsChange/springMvc",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bower": "*",
+    "jquery": "3.1.1",
+    "requirejs": "^2.3.3"
+  }
+}

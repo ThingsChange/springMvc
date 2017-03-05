@@ -1,6 +1,6 @@
 //导入你所需要用的工具包 require('node_modules里对应模块')
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'); // sass/scss编译
+    sass = require('gulp-ruby-sass'), // sass/scss编译
     babel=require('gulp-babel'),
     rename=require('gulp-rename'),
     jshint = require("gulp-jshint"),
@@ -10,8 +10,8 @@ var gulp = require('gulp'),
     revCollector = require('gulp-rev-collector');
 
 var es6Src='source/**/*.es6',
-    jsSrc='dist/**/*.js'
-    cssSrc='css/**/*.css'
+    jsSrc='dist/**/*.js',
+    cssSrc='css/**/*.css';
 
 
 //转换es6文件为es5代码
@@ -24,7 +24,7 @@ gulp.task("toes5", function () {
 gulp.task('min', function() {
     gulp.src(jsSrc)
         .pipe(uglify({
-            mangle: true,//类型：Boolean 默认：true 是否修改变量名
+            mangle: true,  //类型：Boolean 默认：true 是否修改变量名
             compress: true,//类型：Boolean 默认：true 是否完全压缩
             preserveComments:'some'//并保留部分注释
         }))
@@ -33,10 +33,10 @@ gulp.task('min', function() {
 });
 gulp.task('auto', function () {
     // 监听文件修改，当文件被修改则执行 script 任务
-    gulp.watch(es6Src, ['toes5'])
-    // gulp.watch(jsSrc, ['min']);
+    gulp.watch(es6Src, ['toes5']);
+    gulp.watch(jsSrc, ['min']);
     gulp.watch('css/**/*.scss',['sass']);
-    // gulp.watch(jsSrc,['revCss','revJs','revHtml'])
+    gulp.watch(jsSrc,['revCss','revJs','revHtml'])
 });
 // scss 任务
 gulp.task('sass', function () {

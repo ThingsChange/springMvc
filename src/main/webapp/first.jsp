@@ -36,7 +36,7 @@
 <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="js/jquery.jBox-2.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.js"></script>
-<script type="text/javascript" src="static/js/test/test.js?v=5db2acb4db"></script>
+<script type="text/javascript" src="static/dist/test/test.js?v=0beaae8125"></script>
 </body>
 <script>
     window.onload = function () {
