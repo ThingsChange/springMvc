@@ -5,6 +5,9 @@
   Time: 12:06
   To change this template use File | Settings | File Templates.
 --%>
+<%
+    String path = request.getContextPath();
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
@@ -37,6 +40,8 @@
 <script type="text/javascript" src="js/jquery.jBox-2.3.min.js"></script>
 <script type="text/javascript" src="js/jquery-migrate-1.js"></script>
 <script type="text/javascript" src="static/dist/test/test.js?v=0beaae8125"></script>
+<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+<script data-main="static/js/page/credit/recharge.js" src="static/lib/require-2.1.16/require.js?t=544ed168"></script>
 </body>
 <script>
     window.onload = function () {
