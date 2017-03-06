@@ -9,27 +9,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" %>
 <html>
-<head><title>Title</title></head>
+<head>
+    <title>Title</title>
+    <script type="text/javascript">
+        var __ROOT__ = "<%=path%>";
+    </script>
+</head>
 <link rel="stylesheet" href="css/jbox.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
-<link rel="stylesheet" href="dist/css/test.min.css?v=d2146b29e2">
-<body><h2>Hello javaScript，bye java!</h2><input type="button" onclick="hello()" value="zou">
-<h2>${message}</h2><input id="txtTest" type="text" placeholder="sign your name"
-                          style="width:260px"> <%--<input id="txtTest2" type="text" placeholder="sign your name">--%>
-<input id="uploadHeadPic" type="button" value="选择文件" class="license_file">
-<input id="urlID" type="text"class="license_file"> 头像：<img id="imgID" src=""> <a href="fullAvatarEditor-2.3/simpleDemo.html">tiao</a><br>
+<link rel="stylesheet" href="static/dist/css/test.min.css?v=d2146b29e2">
+<body>
+    <h2>Hello javaScript，bye java!</h2>
+    <input type="button" onclick="hello()" value="zou">
+    <h2>${message}</h2>
+    <input id="txtTest" type="text" placeholder="sign your name"style="width:260px">
+    <%--<input id="txtTest2" type="text" placeholder="sign your name">--%>
+    <input id="uploadHeadPic" type="button" value="选择文件" class="license_file">
+    <input id="urlID" type="text"class="license_file"> 头像：<img id="imgID" src=""> <a href="fullAvatarEditor-2.3/simpleDemo.html">tiao</a><br>
 <%
     out.print("1111");
 %>
+
+    <div id="home">
+        <div id="top">top</div>
+        <div id="center">
+            <div id="left">left</div>
+            <div id="right">right</div>
+        </div>
+    </div>
 <script src="js/autocomplete.js"></script>
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/jquery.jBox-2.3.min.js"></script>
-<script src="js/jquery-migrate-1.js"></script>
-<script src="static/dist/js/test/test.min.js?v=f1091aa717"></script>
-<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>
-<script data-main="static/js/page/credit/recharge.js" src="static/lib/require-2.1.16/require.js?t=544ed168"></script>
+<%--<script src="js/jquery-1.9.1.js"></script>--%>
+<%--<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>--%>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=9250afadcc" src="<%=path %>/static/lib/requirejs/require.js"></script>
+    <script>
+        require(['qy.ajaxutil','test'],function (aa,sa) {
+            console.log(aa.say());
+        });
+
+    </script>
+  <%--  <script src="js/jquery.jBox-2.3.min.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>--%>
 </body>
-<script>function hello() {
+<%--<script>
+    function hello() {
     var t = new XMLHttpRequest;
     t.open("get", "/hello/printHello", !0), t.onreadystatechange = function () {
         "4" == t.readyState && "200" == t.status && alert("请求成功")
@@ -67,5 +89,5 @@ window.onload = function () {
     }
 
     $("#uploadHeadPic").bind("click", t)
-})</script>
+})</script>--%>
 </html>

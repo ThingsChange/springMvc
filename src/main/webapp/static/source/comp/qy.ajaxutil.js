@@ -86,9 +86,15 @@ define(['jquery',function ($) {
     var post = function (path,successBackFunction,errorBackFunction,settings) {
         sendAjax(path,successBackFunction,errorBackFunction,settings);
     };
+    console.log("nimeice");
+    var say=function () {
+        console.log($);
+    }
+    say();
     return {
         sendAjax:sendAjax,
         get:get,
-        post:post
+        post:post,
+        say:say
     };
 }]);

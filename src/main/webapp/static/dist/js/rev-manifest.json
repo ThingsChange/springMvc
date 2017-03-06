@@ -1,4 +1,5 @@
 {
-  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=d60b1bc008",
+  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=07365ce04e",
+  "homepage/index.min.js": "homepage/index.min.js?v=9250afadcc",
   "test/test.min.js": "test/test.min.js?v=f1091aa717"
 }
