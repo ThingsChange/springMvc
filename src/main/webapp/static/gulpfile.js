@@ -1,33 +1,33 @@
 //引入gulp和gulp插件
 var gulp = require('gulp'),
-    // less = require('gulp-less'),
+    babel=require('gulp-babel'),
+    less = require('gulp-less'),
     assetRev = require('gulp-asset-rev'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
-    // imagemin = require('gulp-imagemin'),
+    imagemin = require('gulp-imagemin'),
     runSequence = require('run-sequence'),
     rev = require('gulp-rev'),
     revCollector = require('gulp-rev-collector');
 
 //定义css、js源文件路径
 var cssSrc = 'css/**/*.css',
-    cssMinSrc = 'dist/css/*.css',
+    cssMinSrc = 'dist/css/**/*.css',
     jsSrc = 'source/**/*.js',
     jsMinSrc = 'dist/js/**/*.js',
     lessSrc = 'less/**/*.less',
     imgMinSrc = 'dist/images/*.{png,jpg,gif,ico}',
-    htmlSrc = '../*.jsp';
+    htmlSrc = '../*.jsp',
+    es6Src='source/**/*.es6';
 
-/*
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
     return gulp.src(lessSrc)  //该任务针对的文件
         .pipe(less()) //该任务调用的模块
         .pipe(gulp.dest('css'));//编译后的路径
 });
-*/
 
 //为css中引入的图片/字体等添加hash编码
 gulp.task('assetRev', function(){
@@ -107,10 +107,18 @@ gulp.task('revImage', function(){
         .pipe(gulp.dest('dist/images'));
 });
 
+//转换es6文件为es5代码
+gulp.task("toes5", function () {
+    return gulp.src(es6Src)// ES6 源码存放的路径
+        .pipe(babel())
+        .pipe(gulp.dest("source")); //转换成 ES5 存放的路径
+});
+
 gulp.task('default', function (done) {
     //condition = false;
     runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
-        // 'less',
+        ['toes5'],
+        ['less'],
         ['assetRev'],
         ['cssMin'],
         ['revCss'],
@@ -118,7 +126,7 @@ gulp.task('default', function (done) {
         ['revJs'],
         // 'imageMin',
         ['revImage'],
-        ['htmlMin'],
+        // ['htmlMin'],
         ['revHtml'],
         done);
 });

@@ -70,7 +70,7 @@ define(['jquery',function ($) {
                         data.errorMessage='解析错误';
                         break;
                     default:
-                        data.errorMessage='连我都不知道出什么错了'
+                        data.errorMessage='连我都不知道出什么错了，你随便吧'
                 }
                 /*如果errorBackFunction 是函数的话*/
                 if(typeof errorBackFunction==='function'){
