@@ -2,6 +2,7 @@
 var gulp = require('gulp'),
     babel=require('gulp-babel'),
     less = require('gulp-less'),
+    jshint=require('gulp-jshint'),
     assetRev = require('gulp-asset-rev'),
     minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
@@ -50,6 +51,13 @@ gulp.task('revCss', function(){
         .pipe(rev()) //文件名加MD5后缀
         .pipe(rev.manifest())  //必须有这个方法 生成一个rev-manifest.json
         .pipe(gulp.dest('dist/css'));  //将rev-manifest.json 保存到 dist/css 目录内
+});
+
+//jsHint代码检查
+gulp.task('jshint', function() {
+    gulp.src(jsSrc)
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 //压缩js

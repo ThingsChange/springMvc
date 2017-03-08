@@ -25,7 +25,10 @@
     <input id="txtTest" type="text" placeholder="sign your name"style="width:260px">
     <%--<input id="txtTest2" type="text" placeholder="sign your name">--%>
     <input id="uploadHeadPic" type="button" value="选择文件" class="license_file">
-    <input id="urlID" type="text"class="license_file"> 头像：<img id="imgID" src=""> <a href="fullAvatarEditor-2.3/simpleDemo.html">tiao</a><br>
+    <input id="urlID" type="text"class="license_file">
+    头像：<img id="imgID" src="">
+    <a href="fullAvatarEditor-2.3/simpleDemo.html">tiao</a>
+    <br>
 <%
     out.print("1111");
 %>
@@ -40,13 +43,7 @@
 <script src="js/autocomplete.js"></script>
 <%--<script src="js/jquery-1.9.1.js"></script>--%>
 <%--<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>--%>
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=9250afadcc" src="<%=path %>/static/lib/requirejs/require.js"></script>
-    <script>
-        require(['qy.ajaxutil','test'],function (aa,sa) {
-            console.log(aa.say());
-        });
-
-    </script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=ec7e74809e" src="<%=path %>/static/lib/requirejs/require.js"></script>
   <%--  <script src="js/jquery.jBox-2.3.min.js"></script>
     <script src="js/jquery-migrate-1.js"></script>--%>
 </body>
