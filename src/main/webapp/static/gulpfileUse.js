@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     imagemin = require('gulp-imagemin'),
     runSequence = require('run-sequence'),
-    sequence=require("gulp-sequence"),
     rev = require('gulp-rev'),
     sourcemaps=require('gulp-sourcemaps'),
     revCollector = require('gulp-rev-collector'),
@@ -34,53 +33,22 @@ var cssSrc = 'css/**/*.css',
     lessSrc = 'less/**/*.less',
     imgMinSrc = 'dist/images/*.{png,jpg,gif,ico}',
     htmlSrc = '../*.jsp',
-    es6Src='source/**/*.es6',
-    baseDir='dist'
+    es6Src='source/**/*.es6';
 
-gulp.task('serve', function() {
-    browserSync.init({
-        server: {
-            baseDir:[baseDir],
-            middleware:SSI({
-                baseDir:baseDir,
-                ext:'.shtml',
-                version:'2.10.0'
-            })
-        },
-        port: 8080
-    });
-
-    gulp.watch(sassSrc,['cssChange']);
-    gulp.watch(es6Src, ['jsChange']);
-    // gulp.watch(htmlSrc, ['revHtml']);
-    /*gulp.watch(htmlSrc).on("change",function(){
-        browserSync.reload;
-    });*/
-});
-
-gulp.task('cssChange',function (done) {
-        //condition = false;
-        runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
-            ['scss'],['cssMin'],['revCss'],['revHtml'],done);
-})
-gulp.task('jsChange',function (done) {
-    runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
-            ['toes5'],['jshint'],['uglify'],['revJs'],['revHtml'],done);
-    }
-)
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
     return gulp.src(lessSrc)  //该任务针对的文件
         .pipe(less()) //该任务调用的模块
         .pipe(gulp.dest('css'));//编译后的路径
 });
-//编译scss 定义一个scss任务（自定义任务名称）
-gulp.task('scss', function(){
+//编译less 定义一个less任务（自定义任务名称）
+gulp.task('sass', function(){
     return gulp.src(sassSrc)  //该任务针对的文件
-        .pipe(plumber())
-        .pipe(sass.sync().on('error', sass.logError))
-        .pipe(sass({outputStyle:"compact"}))
+        .pipe(sass().on('error', sass.logError)) //该任务调用的模块
         .pipe(gulp.dest('css'));//编译后的路径
+});
+gulp.task('sass:watch', function () {
+    gulp.watch(sassSrc, ['sass']);
 });
 
 //为css中引入的图片/字体等添加hash编码
@@ -95,8 +63,7 @@ gulp.task('cssMin', function() {
     return gulp.src(cssSrc)   //压缩的文件
         .pipe(rename({suffix: '.min'}))
         .pipe(minifyCss()) //执行压缩
-        .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.stream());;  //输出文件夹
+        .pipe(gulp.dest('dist/css'));  //输出文件夹
 });
 
 //CSS生成文件hash编码并生成 rev-manifest.json文件名对照映射
@@ -119,8 +86,7 @@ gulp.task('uglify',function(){
     return gulp.src(jsSrc)
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js'))
-        .pipe(browserSync.stream());;
+        .pipe(gulp.dest('dist/js'));
 });
 
 //js生成文件hash编码并生成 rev-manifest.json文件名对照映射
@@ -152,19 +118,16 @@ gulp.task('htmlMin',function(){
 //Html替换css、js文件版本
 gulp.task('revHtml', function () {
     return gulp.src(['dist/**/*.json', '../*.jsp'])
-        .pipe(plumber())
         .pipe(revCollector())
-        .pipe(gulp.dest('../'))
-        .pipe(browserSync.stream());;
-
+        .pipe(gulp.dest('../'));
 });
 /*
-//压缩image
-gulp.task('imageMin', function () {
-    gulp.src('images/!*.{png,jpg,gif,ico}')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/images'));
-});*/
+ //压缩image
+ gulp.task('imageMin', function () {
+ gulp.src('images/!*.{png,jpg,gif,ico}')
+ .pipe(imagemin())
+ .pipe(gulp.dest('dist/images'));
+ });*/
 
 gulp.task('revImage', function(){
     return gulp.src(imgMinSrc)
@@ -198,12 +161,17 @@ gulp.task("javascript",function () {
 })
 
 
+
+
+
+
+
 gulp.task('default', function (done) {
     //condition = false;
     runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
         ['toes5'],
         ['less'],
-        ['scss'],
+        ['sass'],
         ['assetRev'],
         ['cssMin'],
         ['revCss'],

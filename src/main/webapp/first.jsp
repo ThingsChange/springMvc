@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="css/jbox.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
 <link rel="stylesheet" href="static/dist/css/test.min.css?v=d2146b29e2">
+<link rel="stylesheet" href="static/dist/css/heart/heart.min.css?v=d99d6f549a">
 <body>
     <h2>Hello javaScript，bye java!</h2>
     <input type="button" onclick="hello()" value="zou">
@@ -40,6 +41,15 @@
             <div id="right">right</div>
         </div>
     </div>
+
+
+    <input type="checkbox" id="toggle-heart">
+    <label for="toggle-heart"></label>
+
+    <input type="button" class="btnTest" value="测试">
+
+
+
 <script src="js/autocomplete.js"></script>
 <%--<script src="js/jquery-1.9.1.js"></script>--%>
 <%--<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>--%>
