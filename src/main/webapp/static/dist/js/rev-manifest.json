@@ -1,5 +1,8 @@
 {
-  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=07365ce04e",
-  "homepage/index.min.js": "homepage/index.min.js?v=ec7e74809e",
+  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=ff270afea4",
+  "comp/readPro.min.js": "comp/readPro.min.js?v=eade43527e",
+  "comp/uti12l.min.js": "comp/uti12l.min.js?v=8f1a8cdc2b",
+  "comp/util.js": "comp/util.js?v=d2d55cef9d",
+  "homepage/index.min.js": "homepage/index.min.js?v=f810c1410e",
   "test/test.min.js": "test/test.min.js?v=27f0b49583"
 }

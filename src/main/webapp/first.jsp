@@ -43,9 +43,12 @@
 <script src="js/autocomplete.js"></script>
 <%--<script src="js/jquery-1.9.1.js"></script>--%>
 <%--<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>--%>
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=ec7e74809e" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=f810c1410e" src="<%=path %>/static/lib/requirejs/require.js"></script>
   <%--  <script src="js/jquery.jBox-2.3.min.js"></script>
     <script src="js/jquery-migrate-1.js"></script>--%>
+<script>
+
+</script>
 </body>
 <%--<script>
     function hello() {

@@ -4,7 +4,7 @@
  * @author 晴云
  * @moudle name qy.ajaxutil
  */
-define(['jquery',function ($) {
+define(['jquery'],function ($) {
     /*使用严格模式*/
     'use strict';
     /**
@@ -97,4 +97,4 @@ define(['jquery',function ($) {
         post:post,
         say:say
     };
-}]);
+});
