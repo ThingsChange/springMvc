@@ -22,4 +22,8 @@
   border: outset;
   float: left;
   width: 40%;
+  font-size: 15px;
+}
+.btnSize {
+  font-size: 42px;
 }

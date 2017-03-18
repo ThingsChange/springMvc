@@ -9,9 +9,11 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
     imagemin = require('gulp-imagemin'),
-    runSequence = require('run-sequence'),
+    browserSync=require('browser-sync').create()
+runSequence = require('run-sequence'),
     rev = require('gulp-rev'),
-    revCollector = require('gulp-rev-collector');
+    revCollector = require('gulp-rev-collector'),
+    reload=browserSync.reload;
 gulp.task('help',function () {
 
     console.log('	gulp build			文件打包');
@@ -39,6 +41,39 @@ var cssSrc = 'css/**/*.css',
     imgMinSrc = 'dist/images/*.{png,jpg,gif,ico}',
     htmlSrc = '../*.jsp',
     es6Src='source/**/*.es6';
+//define a task for watch source change
+gulp.task('serve',['less'], function() {
+    browserSync.init({
+        //指定服务器启动根目录
+        files: "**",
+        server: "./",
+    });
+    //监听Less编译
+    gulp.watch(es6Src, function (event) {
+        runSequence(
+            ['toes5'],
+            ['jshint'],
+            ['uglify'],
+            ['revJs'],
+            ['revHtml']
+        )
+    }).on('change', browserSync.reload);
+    /* gulp.watch(lessSrc, function (event) {
+     runSequence(
+     ['less'],
+     ['cssMin'],
+     ['uglify'],
+     ['revCss'],
+     ['revHtml']
+     )
+     })
+     //监听任何文件变化，实时刷新页面
+     gulp.watch(es6Src).on('change', browserSync.reload);
+     gulp.watch(lessSrc).on('change', browserSync.reload);*/
+});
+
+
+
 
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
@@ -118,12 +153,12 @@ gulp.task('revHtml', function () {
         .pipe(gulp.dest('../'));
 });
 /*
-//压缩image
-gulp.task('imageMin', function () {
-    gulp.src('images/!*.{png,jpg,gif,ico}')
-        .pipe(imagemin())
-        .pipe(gulp.dest('dist/images'));
-});*/
+ //压缩image
+ gulp.task('imageMin', function () {
+ gulp.src('images/!*.{png,jpg,gif,ico}')
+ .pipe(imagemin())
+ .pipe(gulp.dest('dist/images'));
+ });*/
 
 gulp.task('revImage', function(){
     return gulp.src(imgMinSrc)
@@ -179,5 +214,6 @@ gulp.task('default', function (done) {
         ['revImage'],
         // ['htmlMin'],
         ['revHtml'],
+        ['serve'],
         done);
 });

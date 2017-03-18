@@ -17,10 +17,10 @@
 </head>
 <link rel="stylesheet" href="css/jbox.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
-<link rel="stylesheet" href="static/dist/css/test.min.css?v=d2146b29e2">
+<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=10ca6ebf3f">
 <body>
     <h2>Hello javaScript，bye java!</h2>
-    <input type="button" onclick="hello()" value="zou">
+    <input type="button" onclick="hello()" class="btnSize" value="zou">
     <h2>${message}</h2>
     <input id="txtTest" type="text" placeholder="sign your name"style="width:260px">
     <%--<input id="txtTest2" type="text" placeholder="sign your name">--%>

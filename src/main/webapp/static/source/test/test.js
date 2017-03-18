@@ -41,8 +41,8 @@ var Project = function () {
 
 var project = new Project("Journal");
 project.start();
-console.log("成功了吗");
-console.log("成功了吗123");
+console.log("12成功了22145吗23");
+console.log("1245567");
 console.log(Object.assign({}, project.getPoint()));
 
 var testChild = function (_Project) {

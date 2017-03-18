@@ -1,1 +1,1 @@
-#home #center,#home #top{width:90%;border:outset}#home{color:#00f;width:600px;height:500px;border:outset}#home #center{height:300px}#home #center #left,#home #center #right{border:outset;float:left;width:40%}
+#home #center #left,#home #center #right{border:outset;float:left;width:40%}#home{color:#00f;width:600px;height:500px;border:outset}#home #top{border:outset;width:90%}#home #center{border:outset;height:300px;width:90%}#home #center #right{font-size:15px}.btnSize{font-size:42px}

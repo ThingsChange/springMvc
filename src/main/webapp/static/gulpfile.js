@@ -9,9 +9,11 @@ var gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
     imagemin = require('gulp-imagemin'),
+    browserSync=require('browser-sync'),
     runSequence = require('run-sequence'),
     rev = require('gulp-rev'),
-    revCollector = require('gulp-rev-collector');
+    revCollector = require('gulp-rev-collector'),
+    reload=browserSync.create().reload;
 gulp.task('help',function () {
 
     console.log('	gulp build			文件打包');
@@ -39,6 +41,44 @@ var cssSrc = 'css/**/*.css',
     imgMinSrc = 'dist/images/*.{png,jpg,gif,ico}',
     htmlSrc = '../*.jsp',
     es6Src='source/**/*.es6';
+//define a task for watch source change
+gulp.task('serve',['less'], function() {
+    browserSync({
+        //指定服务器启动根目录
+        // server: "dist",
+        open: "false",
+        directory: true,
+        browser: "chrome",
+        proxy: "localhost:8080",
+        reloadDelay: 2000
+    });
+    //监听es6编译
+    gulp.watch(es6Src, function (event) {
+        runSequence(
+            ['toes5'],
+            ['jshint'],
+            ['uglify'],
+            ['revJs'],
+            ['revHtml'],
+            ['reload']
+        )
+    });
+   gulp.watch(lessSrc, function (event) {
+        runSequence(
+            ['less'],
+            ['cssMin'],
+            ['revCss'],
+            ['revHtml'],
+            ['reload']
+        )
+    })
+    //监听任何文件变化，实时刷新页面
+ /*   gulp.watch(es6Src).on('change', browserSync.reload);
+    gulp.watch(lessSrc).on('change', browserSync.reload);*/
+});
+
+
+
 
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
@@ -117,6 +157,10 @@ gulp.task('revHtml', function () {
         .pipe(revCollector())
         .pipe(gulp.dest('../'));
 });
+gulp.task('reload',function () {
+    browserSync.reload()
+    // reload({ stream:true });
+})
 /*
 //压缩image
 gulp.task('imageMin', function () {
@@ -168,16 +212,14 @@ gulp.task("dis",function (done) {
 gulp.task('default', function (done) {
     //condition = false;
     runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
-        ['toes5'],
-        ['less'],
+        ['toes5','less'],
         ['assetRev'],
-        ['cssMin'],
-        ['revCss'],
-        ['uglify'],
-        ['revJs'],
+        ['cssMin','uglify'],
+        ['revCss','revJs'],
         // 'imageMin',
         ['revImage'],
         // ['htmlMin'],
         ['revHtml'],
+        ['serve'],
         done);
 });
