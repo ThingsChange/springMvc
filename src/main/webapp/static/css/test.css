@@ -6,24 +6,45 @@
 }
 #home #top {
   border: outset;
-  width: 90%;
+  border-color: #000000 greenyellow;
 }
 #home #center {
   border: outset;
   height: 300px;
-  width: 90%;
+  width: 100%;
+  /* .clearfloat:after{
+      display:block;clear:both;content:"";visibility:hidden;height:0;
+    }
+    .clearfloat{zoom:1}*/
 }
 #home #center #left {
-  border: outset;
+  border: solid 1px red;
   float: left;
-  width: 40%;
+  width: 30%;
 }
 #home #center #right {
-  border: outset;
-  float: left;
-  width: 40%;
+  border: solid 1px green;
+  float: right;
+  width: 30%;
   font-size: 15px;
 }
+#home #center #testFunction {
+  border: solid 1px greenyellow;
+  font-family: "Microsoft YaHei UI";
+}
+#home #center .clearfloat:after {
+  display: block;
+  clear: both;
+  content: "";
+  visibility: hidden;
+  height: 0;
+}
+#home #center .clearfloat {
+  zoom: 1;
+}
 .btnSize {
-  font-size: 42px;
+  font-size: 15px;
+}
+[v-cloak] {
+  display: none;
 }
