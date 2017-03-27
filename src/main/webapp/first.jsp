@@ -17,7 +17,9 @@
 </head>
 <link rel="stylesheet" href="css/jbox.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
-<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=10ca6ebf3f">
+<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=92173fb016">
+
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=da4cefd4a7" src="<%=path %>/static/lib/requirejs/require.js"></script>
 <body>
     <h2>Hello javaScript，bye java!</h2>
     <input type="button" onclick="hello()" class="btnSize" value="zou">
@@ -35,15 +37,28 @@
 
     <div id="home">
         <div id="top">top</div>
-        <div id="center">
+        <div id="center" class="clearfloat">
             <div id="left">left</div>
             <div id="right">right</div>
+            <div id="testFunction">
+                <p v-cloak>{{result}}</p>
+                <button v-on:click="reverseMessage">ReverseMessage</button>
+                <div id="app">
+                    <input v-model="newTodo" v-on:keyup.enter="addTodo">
+                    <ul>
+                        <li v-for="(todo,index) in todos">
+                            <span v-cloak>{{todo.text}}</span>
+                            <button v-on:click="removeTodo(index)">X</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 <script src="js/autocomplete.js"></script>
 <%--<script src="js/jquery-1.9.1.js"></script>--%>
 <%--<script src="<%=path %>/static/lib/jquery/dist/jquery.min.js"></script>--%>
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=f810c1410e" src="<%=path %>/static/lib/requirejs/require.js"></script>
+
   <%--  <script src="js/jquery.jBox-2.3.min.js"></script>
     <script src="js/jquery-migrate-1.js"></script>--%>
 <script>
