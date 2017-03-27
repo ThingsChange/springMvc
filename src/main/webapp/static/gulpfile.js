@@ -1,6 +1,7 @@
 //引入gulp和gulp插件
 var gulp = require('gulp'),
     babel=require('gulp-babel'),
+    mergeStream=require("merge-stream"),
     less = require('gulp-less'),
     jshint=require('gulp-jshint'),
     assetRev = require('gulp-asset-rev'),
@@ -13,6 +14,8 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     rev = require('gulp-rev'),
     revCollector = require('gulp-rev-collector'),
+    sourcemaps=require('gulp-sourcemaps'),
+    autoprefixer=require('gulp-autoprefixer')
     reload=browserSync.create().reload;
 gulp.task('help',function () {
 
@@ -53,7 +56,7 @@ gulp.task('serve',['less'], function() {
         reloadDelay: 2000
     });
     //监听es6编译
-    gulp.watch(es6Src, function (event) {
+    gulp.watch([es6Src,jsSrc], function (event) {
         runSequence(
             ['toes5'],
             ['jshint'],
@@ -83,7 +86,9 @@ gulp.task('serve',['less'], function() {
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
     return gulp.src(lessSrc)  //该任务针对的文件
+        .pipe(sourcemaps.init())
         .pipe(less()) //该任务调用的模块
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('css'));//编译后的路径
 });
 
@@ -120,8 +125,10 @@ gulp.task('jshint', function() {
 //压缩js
 gulp.task('uglify',function(){
     return gulp.src(jsSrc)
+        .pipe(sourcemaps.init())
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('dist/js'));
 });
 
@@ -176,8 +183,31 @@ gulp.task('revImage', function(){
         .pipe(gulp.dest('dist/images'));
 });
 
+
+
+
+
+
+
+
+
 //转换es6文件为es5代码
 gulp.task("toes5", function () {
+   /* return mergeStream(
+        gulp.src([es6Src])
+            .pipe(babel())
+            )
+        .pipe(gulp.dest("source"))*/
+       /* gulp.src('src/!**!/!*.js')
+            .pipe(sourcemaps.init())
+            .pipe(babel())
+            .pipe(sourcemaps.write('.'))
+        )
+        .pipe(concat('all.js'))
+        .pipe(gulp.dest('dist'));*/
+
+
+
     return gulp.src(es6Src)// ES6 源码存放的路径
         .pipe(babel())
         .pipe(gulp.dest("source")); //转换成 ES5 存放的路径
