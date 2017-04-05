@@ -16,10 +16,11 @@
     </script>
 </head>
 <link rel="stylesheet" href="css/jbox.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
-<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=db8ea8c3d7">
+<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=9f28ad4461">
 
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=909eeada15" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=48e78c4be3" src="<%=path %>/static/lib/requirejs/require.js"></script>
 <body>
     <h2>Hello javaScript，bye java!</h2>
     <input type="button"  class="btnSize" value="zou">
@@ -36,24 +37,24 @@
 %>
 
     <div id="home">
-        <div id="top">top</div>
+        <div id="top">尝试CSS样式</div>
         <div id="center">
-            <div id="left">{{message1}}</div>
+            <div id="left" v-cloak>{{message1}}</div>
             <div id="right">
-                <p>{{agagin}}</p>
+                <p v-cloak>{{agagin}}</p>
                 <input type="text" v-model='agagin'>
             </div>
             <div id="centerDown" class="centerDown" >
                 <ul>
                     <li v-for="lifeStyle in lifeStyles">
-                        <p v-cloak>{{lifeStyle.name}}:</p>
-                        <p v-cloak>{{lifeStyle.level}}</p>
+                        <span v-cloak>{{lifeStyle.name}}:</span>
+                        <span v-cloak>{{lifeStyle.level}}</span>
                     </li>
                 </ul>
             </div>
             <div id="testFunction">
                 <p v-cloak>{{result}}</p>
-                <button v-on:click="reverseMessage">ReverseMessage</button>
+                <button class="btnSize btn" v-on:click="reverseMessage">ReverseMessage</button>
                 <div id="app">
                     <input v-model="newTodo" v-on:keyup.enter="addTodo">
                     <ul>
@@ -67,7 +68,7 @@
     </div>
 <script src="js/autocomplete.js"></script>
     <%--这个的引入是为了可以使用ES6的一些新的语法的转换--%>
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=909eeada15" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=48e78c4be3" src="<%=path %>/static/lib/requirejs/require.js"></script>
 <script>
 
 </script>

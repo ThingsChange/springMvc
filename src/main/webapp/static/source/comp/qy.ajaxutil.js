@@ -89,8 +89,8 @@ define(['jquery'],function ($) {
     console.log("nimeice");
     var say=function () {
         console.log($);
+        console.log("hello");
     }
-    say();
     return {
         sendAjax:sendAjax,
         get:get,

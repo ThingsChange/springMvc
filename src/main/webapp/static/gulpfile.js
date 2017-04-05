@@ -88,7 +88,7 @@ gulp.task('less', function(){
     return gulp.src(lessSrc)  //该任务针对的文件
         .pipe(sourcemaps.init())
         .pipe(less()) //该任务调用的模块
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('css'));//编译后的路径
 });
 
@@ -128,7 +128,7 @@ gulp.task('uglify',function(){
         .pipe(sourcemaps.init())
         .pipe(rename({suffix: '.min'}))
         .pipe(uglify())
-        .pipe(sourcemaps.write("."))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/js'));
 });
 
