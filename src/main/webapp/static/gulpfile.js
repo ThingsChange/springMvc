@@ -15,7 +15,8 @@ var gulp = require('gulp'),
     rev = require('gulp-rev'),
     revCollector = require('gulp-rev-collector'),
     sourcemaps=require('gulp-sourcemaps'),
-    autoprefixer=require('gulp-autoprefixer')
+    autoprefixer=require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
     reload=browserSync.create().reload;
 gulp.task('help',function () {
 
@@ -79,9 +80,33 @@ gulp.task('serve',['less'], function() {
  /*   gulp.watch(es6Src).on('change', browserSync.reload);
     gulp.watch(lessSrc).on('change', browserSync.reload);*/
 });
+//压缩js
+gulp.task('uglify',function(){
+    return gulp.src(jsSrc)
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write(''))
+        .pipe(gulp.dest('dist/js'));
+});
+//压缩js
+gulp.task('uglifyDis',function(){
+    return gulp.src(jsSrc)
+        // .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(rename({suffix: '.min'}))
+        // .pipe(sourcemaps.write(''))
+        .pipe(gulp.dest('dist/js'));
+});
 
-
-
+gulp.task('scripts', function() {  // 这个任务的名称是 scripts
+    return gulp.src('source/js/+(a|b).js')  //
+        .pipe(sourcemaps.init())  // 我们希望出错能回溯到最原始的文件，也就是 a.js 和 b.js 中去寻找错误的原因
+        .pipe(concat('main.min.js'))  // 指定合并并压缩后的文件名
+        .pipe(uglify())  // 压缩
+        .pipe(sourcemaps.write(''))
+        .pipe(gulp.dest('dist/js'));
+});
 
 //编译less 定义一个less任务（自定义任务名称）
 gulp.task('less', function(){
@@ -122,15 +147,7 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-//压缩js
-gulp.task('uglify',function(){
-    return gulp.src(jsSrc)
-        .pipe(sourcemaps.init())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/js'));
-});
+
 
 //js生成文件hash编码并生成 rev-manifest.json文件名对照映射
 gulp.task('revJs', function(){
@@ -214,25 +231,31 @@ gulp.task("toes5", function () {
 });
 
 gulp.task("dev",function (done) {
-    runSequence(
-        ['toes5'],
-        ['less'],
+    runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
+        ['toes5','less'],
         ['assetRev'],
-        ['revCss'],
-        ['revJs'],
-        ['revHtml']
-    )
+        ['cssMin','uglify'],
+        ['revCss','revJs'],
+        // 'imageMin',
+        ['revImage'],
+        // ['htmlMin'],
+        ['revHtml'],
+        ['serve'],
+        done);
 })
 
 gulp.task("dis",function (done) {
-    runSequence(
-        ['cssMin'],
-        ['revCss'],
-        ['uglify'],
-        ['revJs'],
+    runSequence(  //此处不能用gulp.run这个最大限度并行(异步)执行的方法，要用到runSequence这个串行方法(顺序执行)才可以在运行gulp后顺序执行这些任务并在html中加入版本号
+        ['toes5','less'],
         ['assetRev'],
-        ['revHtml']
-    )
+        ['cssMin','uglifyDis'],
+        ['revCss','revJs'],
+        // 'imageMin',
+        ['revImage'],
+        // ['htmlMin'],
+        ['revHtml'],
+        ['serve'],
+        done);
 
 })
 

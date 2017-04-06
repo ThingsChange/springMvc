@@ -1,9 +1,10 @@
 {
-  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=e431b0673a",
-  "comp/readPro.min.js": "comp/readPro.min.js?v=bc6a53ef3e",
-  "comp/uti12l.min.js": "comp/uti12l.min.js?v=6cb2079e99",
-  "comp/util.js": "comp/util.js?v=d2d55cef9d",
-  "homepage/index.min.js": "homepage/index.min.js?v=48e78c4be3",
-  "test/Symbol.min.js": "test/Symbol.min.js?v=3a5d4fef4d",
-  "test/test.min.js": "test/test.min.js?v=93f38a7082"
+  "comp/qy.ajaxutil.min.js": "comp/qy.ajaxutil.min.js?v=3df57595ab",
+  "comp/readPro.min.js": "comp/readPro.min.js?v=819a3030e5",
+  "comp/uti12l.min.js": "comp/uti12l.min.js?v=b3c9e2549b",
+  "homepage/index.min.js": "homepage/index.min.js?v=dbda433aa6",
+  "js/a.min.js": "js/a.min.js?v=8c5306eaca",
+  "js/b.min.js": "js/b.min.js?v=8b118bd6d0",
+  "test/Symbol.min.js": "test/Symbol.min.js?v=edac773989",
+  "test/test.min.js": "test/test.min.js?v=82bde6260f"
 }

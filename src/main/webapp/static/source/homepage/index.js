@@ -66,7 +66,7 @@
         console.log(ajaxutil);
         console.log(util);
         console.log(test);
-        ajaxutil.say();
+        console.log("1223");
         console.log("1223");
     });
 })(window.require);

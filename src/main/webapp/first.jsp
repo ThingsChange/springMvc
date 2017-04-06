@@ -18,9 +18,10 @@
 <link rel="stylesheet" href="css/jbox.css">
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="jquery-jbox/2.3/Skins/Bootstrap/jbox.css">
-<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=9f28ad4461">
+<link rel="stylesheet" href="<%=path %>/static/dist/css/test.min.css?v=6d4667b31c">
 
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=48e78c4be3" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=dbda433aa6" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<%--<script type="text/javascript" src="<%=path %>/static/dist/js/main.min.js?v=504b79b836"></script>--%>
 <body>
     <h2>Hello javaScript，bye java!</h2>
     <input type="button"  class="btnSize" value="zou">
@@ -68,7 +69,7 @@
     </div>
 <script src="js/autocomplete.js"></script>
     <%--这个的引入是为了可以使用ES6的一些新的语法的转换--%>
-<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=48e78c4be3" src="<%=path %>/static/lib/requirejs/require.js"></script>
+<script data-main="<%=path %>/static/dist/js/homepage/index.min.js?v=dbda433aa6" src="<%=path %>/static/lib/requirejs/require.js"></script>
 <script>
 
 </script>
