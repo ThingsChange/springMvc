@@ -18,12 +18,27 @@
         }
     });
     require(['ajaxutil','test.min','util','vue'],function (ajaxutil,test,util,vue) {
-
-        console.log(ajaxutil);
-        console.log(util);
-        console.log(test);
-        ajaxutil.say();
-        console.log("1223");
+        new vue({
+            el:'#left',
+            data:{
+                message1:'Hello Vue.js! '
+            }
+        });
+        new vue({
+            el:'#right',
+            data:{
+                agagin:'Hello again'
+            }
+        });
+        var centerDown=new vue({
+            el: '#centerDown',
+            data: {
+                lifeStyles: [
+                    {name: '高冷范儿', level: '3'},
+                    {name: '避重就轻', level: '5'}
+                ]
+            }
+        });
         var reverseMessage=new vue({
             el:"#testFunction",
             data:{
@@ -33,12 +48,12 @@
             },
             methods:{
                 reverseMessage:function () {
-                this.result=this.result.split("").reverse().join('');
-            },
+                    this.result=this.result.split("").reverse().join('');
+                },
                 addTodo:function () {
-                    var text = this.newTodo.trim()
+                    var text = this.newTodo.trim();
                     if (text){
-                        this.todos.push({text:text})
+                        this.todos.push({text:text});
                         this.newTodo='';
                     }
                 },
@@ -47,6 +62,11 @@
                 }
 
             }
-        })
+        });
+        console.log(ajaxutil);
+        console.log(util);
+        console.log(test);
+        ajaxutil.say();
+        console.log("1223");
     });
 })(window.require);

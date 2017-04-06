@@ -1,16 +1,16 @@
 #home {
-  color: blue;
-  width: 600px;
-  height: 500px;
-  border: outset;
+  background-color: floralwhite;
+  width: 1440px;
+  border: 2px solid #000;
+  margin: 2% auto;
 }
 #home #top {
+  text-align: center;
   border: outset;
-  border-color: #000000 greenyellow;
+  width: 100%;
 }
 #home #center {
   border: outset;
-  height: 300px;
   width: 100%;
   /* .clearfloat:after{
       display:block;clear:both;content:"";visibility:hidden;height:0;
@@ -18,15 +18,22 @@
     .clearfloat{zoom:1}*/
 }
 #home #center #left {
-  border: solid 1px red;
+  border: outset;
   float: left;
-  width: 30%;
+  width: 48%;
 }
 #home #center #right {
-  border: solid 1px green;
+  background-color: #f7ecb5;
+  border: outset;
   float: right;
-  width: 30%;
+  width: 48%;
   font-size: 15px;
+}
+#home #center #centerDown {
+  width: 70%;
+  margin: 0 auto;
+  background-color: #4cae4c;
+  clear: both;
 }
 #home #center #testFunction {
   border: solid 1px greenyellow;
@@ -48,3 +55,5 @@
 [v-cloak] {
   display: none;
 }
+
+/*# sourceMappingURL=test.css.map */

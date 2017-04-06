@@ -54,7 +54,7 @@
             </div>
             <div id="testFunction">
                 <p v-cloak>{{result}}</p>
-                <button class="btnSize btn" v-on:click="reverseMessage">ReverseMessage</button>
+                <button class="btn btn-primary " v-on:click="reverseMessage">ReverseMessage</button>
                 <div id="app">
                     <input v-model="newTodo" v-on:keyup.enter="addTodo">
                     <ul>
